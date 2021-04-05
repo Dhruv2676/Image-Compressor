@@ -38,7 +38,7 @@ This Program Also Takes The Path Of A Text File. This Is Used To Record The File
 # How To Use:
 - If You Are Running The Program For The First Time Then You Have To Install The Dependencies/Requirements For The Program. To Do That:
   - Open A Command Prompt/Terminal In This Program's Directory.
-  - Then Run The Command `pip install requirements.txt` In The Prompt/Terminal.
+  - Then Run The Command `pip install -r requirements.txt` In The Prompt/Terminal.
 
 - It Will Ask You For A Username And Password. You Are To Enter Only This Or Else You Wouldn't Be Able To Use The Program:
   - Username: ***Dhruv_2676***
