@@ -5,12 +5,14 @@ import time
 import re
 
 class Converter:
-    def __init__(self, source, destination, record_path):
+    def __init__(self):
         # Necessary Parameters For Use.
-        self.source = source
-        self.destination = destination
+        self.source = ""
+        self.destination = ""
         self.png_directory = "C:/Users/DHRUV/Desktop/PNG's/"
-        self.record_path = record_path
+        self.record_path = "Record.txt"
+
+        self.avg = []
 
     def ideal_path(self):
         """
@@ -57,7 +59,11 @@ class Converter:
 
                     self.record(image) # Record The Image Through A Function Defined Later.
 
-                    print("{: <75}{: >10}{: >20}".format(image, str(int(os.path.getsize(self.source + image) / 1024)) + " KB", str(int(os.path.getsize(self.destination + image) / 1024)) + " KB")) # Prints The Name Of The File And The Size After Compression In 2 Neat Columns.
+                    org_size = int(os.path.getsize(self.source + image) / 1024)
+                    compressed_size = int(os.path.getsize(self.destination + image) / 1024)
+
+                    print("{: <75}{: >20}{: >20}".format(image, str(org_size) + " KB", str(compressed_size) + " KB")) # Prints The Name Of The File And The Size After Compression In 2 Neat Columns.
+                    self.average_compression(True, org_size, compressed_size)
                 else: # If It's Recorded The It Will Continue Through The Loop.
                     continue
             else: # If The Image Is Not A .jpg or .jpeg File Then It Continues Through The Loop.
@@ -102,6 +108,14 @@ class Converter:
             all_images = file_record.readlines() # Reads All The Lines Of The .txt File.
             return all_images # Returns The List.
 
+    def average_compression(self, stat, org=0, compressed=0):
+        if stat:
+            compression_percent = int(((org - compressed) / org) * 100)
+            self.avg.append(compression_percent)
+        else:
+            tot_avg = int(sum(self.avg) / len(self.avg))
+            return tot_avg
+
     def clear_record(self):
         """
         This Function Asks The User If She/He Wants To Clear The Record Text File. If Yes, The Clears It. If No, Then Doesn't.
@@ -114,34 +128,14 @@ class Converter:
                 quit() # If Yes, Quits The Program.
         print("\n")
 
-    def login(self):
-        """
-        This Function Asks The User For The Username And Password. If Any Of The Details Entered Is Not Equal To The Orignal. Then Prints
-        A Message And Quits The Program.
-        """
-        with open("README.md", 'r') as file: # Opens The README.md File Where The Username And Password Are Stored.
-            x = file.readlines() # Reads All The Lines Of The The README.md File.
-
-        username = (re.findall(".*\*\*\*(.*)\*\*\*", str(x[43])))[0] # Gets The Username From The Bunch Of Lines.
-        password = (re.findall(".*\*\*\*(.*)\*\*\*", str(x[44])))[0] # Gets The Password From The Bunch Of Lines.
-
-        if str(input("Enter Your Username : ")) != username: # Asks The User For The Input Username And Checks Whether It Is Correct. If Not, Then Runs The Code Bloak Below.
-            print("Wrong Username! Quiting The Program....") # Prints A Message For The User.
-            time.sleep(1.5) # Waiting A Second For A Good Exit Effect ;)
-            quit() # Then Quits At Last.
-        elif str(input("Enter Your Password : ")) != password: # Asks The User For The Input Password And Checks Whether It Is Correct. If Not, Then Runs The Code Bloak Below.
-            print("Wrong Password! Quiting The Program....") # Prints A Message For The User.
-            time.sleep(1.5) # Waiting A Second For A Good Exit Effect ;)
-            quit() # Then Quits At Last.
-
-        print("\n")
-
     def main(self):
         """
         This Function Makes It All Work ;)
         """
+        self.source = input("Enter The Directory Path Where The Images Are Located: ") # This Is The Directory From Which The Images Will Be Compressed. Change This According To Your Needs.
+        self.destination = input("Enter The Directory Path Where The Compressed Images Are To Be Saved: ") # This Is The Directory Where All The Compressed Images Be Saved. Change This According To Your Needs.
+        print("\n")
         self.ideal_path()
-        self.login() # Calls The Login Function First.
 
         self.clear_record() # Then Asks For Clearing The Record Text File.
 
@@ -155,15 +149,14 @@ class Converter:
         self.convert_png(all_files_directory_with_png) # Tries To Convert Any .png Images In The Source Directory.
 
         all_files_directory= os.listdir(self.source) # Now Lists All The Files In The Source Directory This Time Without Any .png Files.
-        print("{: <75}{: >10}{: >20}".format("Name", "Size", "Compressed Size")) # Prints The Heading Of The Columns.
+        print("{: <75}{: >20}{: >20}".format("Name", "Original Size", "Compressed Size")) # Prints The Heading Of The Columns.
         time.sleep(1) # This Makes The Computer Wait For 1 Second, So That The User Can See The Headings Of The Columns Before It Starts Printing The Details.
         self.compress(all_files_directory, all_recorded_files) # Compress All The Images.
 
+        avg = self.average_compression(False)
+        print(f"\nThe Compression Rate Throughout Was {avg}%\n")
+
         print(f"Done. All Images In \"{self.destination}\"") # Prints A Message That Compressing Is Done.
       
-Converter = Converter( # Instace Of The Class.
-    "D:/Pictures/57kavitha@gmail.com Google Photos/Google Photos/Photos from 2019/", # This Is The Directory From Which The Images Will Be Compressed. Change This According To Your Needs.
-    "C:/Users/DHRUV/Desktop/Converted/", # This Is The Directory Where All The Compressed Images Be Saved. Change This According To Your Needs.
-    "Record.txt", # Please Change This Only If You UnderStand The Code.
-)
-Converter.main() # Calls The Main Function. 
+Converter = Converter()
+Converter.main() # Calls The Main Function.

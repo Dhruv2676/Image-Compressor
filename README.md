@@ -14,15 +14,11 @@ This Program Takes A Directory's Path `source` And A Destination Path `destinati
 This Program Also Takes The Path Of A Text File. This Is Used To Record The Files Being Converted So That You Can Resume Whenever You Want On A Large Folder Of Images.
 
 # What Can You Change:
-- # Compulsory To Change:
   **Some Of The Path's Are Hard-Coded According To A Windows Computer, If You Are Using Any Other OS, Then Please Change All The Path's In The Code Wherever Possible According To Your OS.** 
 
   ***Sorry For The inconvenience Caused.***
 
-  1. **Line 165** In `"Image Compressor.py"` File. Change It With The Directory's Path Where The Images Which Are To Be Compressed Are Located.
-  2. **Line 166** In `"Image Compressor.py"` File. Change It With The Directory's Path Where The Compressed Images Are To Be Stored.
-- # Can Be Changed:
-  **Change These Things Only If You Understand The Code**
+  **Change These Things Only If You Understand The Code:**
 
   1. **Line 167** In `"Image Compressor.py"` File. Change It With The Path Of A Text File Where The Records Are To Be Stored.
   2. **Line 12** In `"Image Compressor.py"` File. Change It With The Directory's Path Where All The **.png** Image Type Files Are To Be Stored.
@@ -40,10 +36,12 @@ This Program Also Takes The Path Of A Text File. This Is Used To Record The File
   - Open A Command Prompt/Terminal In This Program's Directory.
   - Then Run The Command `pip install -r requirements.txt` In The Prompt/Terminal.
 
-- It Will Ask You For A Username And Password. You Are To Enter Only This Or Else You Wouldn't Be Able To Use The Program:
-  - Username: ***Dhruv_2676***
-  - Password: ***My_Program***
+- After Starting The Program, It Will Ask You To Enter The Source And Destination Folder's Path. Enter The Details Following The Rules Stated In [#Folder-Path-Syntax](#folder-path-syntax).
 - After Entering The Correct Information You Will Be Asked If You Want To Clear The Records. If You Want To Start From The First On A Directory Then Press `y` And Continue.
 - Then It Will Ask You If You Want To Continue With The Program. If You Just Wanted To Clear The Records And Leave Then Press `n` Or Else Press `y` and Continue.
-- After Pressing `y` On The Above Prompt The Program Will Start Running And Printing Some Information On The Screen About Which File It Is Converting And The Size Of The File After Getting Converted In Neat Columns.
-- Then Atlast It Will Print `Done` With The Path Of The *Destination*.
+- After Pressing `y` On The Above Prompt The Program Will Start Running And Printing Some Information On The Screen:
+  - The Name Of The File Getting Converted.
+  - The Original Size Of The Image.
+  - The Size Of The Image After Compression.
+- After Completing With The Files, It Will Print The Compression Rate Of The Above Compressed Images.
+- Then Atlast It Will Print `Done` With The Path Of The *Destination* Folder.
