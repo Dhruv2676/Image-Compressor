@@ -5,43 +5,37 @@ Date:         February, 2021
 ```
 
 # Image-Compressor
-This Program Takes A Directory's Path `source` And A Destination Path `destination` and Then Analyzes The *Source*'s Contents To Find Any Images. Images of Only Specific Types Are Available TO Compress Such As **.png**, **.jpeg**, **.jpg**.
+Given a `Source` Directory, The Program Will Compress *All The Images* In The Directory and Subdirectories. It Can Convert Only **.png**, **.jpeg**, **.jpg** Images.
 
-**.jpeg** and **.jpg** Image Types Will Get Compressed And Then Saved In The *Destination*. The Quality Of The File Will Be Only 30% That Of The Original But That Too Is Not Noticeable At All.
+Images Will Get Compressed And Then Saved In The *Destination* Folder. The Quality Of The Compressed Image Will Be Only 30% That Of The Original, *But That Too Is Not Noticeable At All*.
 
-**.png** Image Type Will First Get Converted To **.jpg** Image Type And Then Get Compressed And Saved To The *Destination*. Then The **.png** File Will Be Moved To A Folder Called `PNG's` On The Desktop Which Will Be Created Automatically By The Program.
-
-This Program Also Takes The Path Of A Text File. This Is Used To Record The Files Being Converted So That You Can Resume Whenever You Want On A Large Folder Of Images.
-
-# What Can You Change:
-  **Some Of The Path's Are Hard-Coded According To A Windows Computer, If You Are Using Any Other OS, Then Please Change All The Path's In The Code Wherever Possible According To Your OS.** 
-
-  ***Sorry For The inconvenience Caused.***
-
-  **Change These Things Only If You Understand The Code:**
-
-  1. **Line 167** In `"Image Compressor.py"` File. Change It With The Path Of A Text File Where The Records Are To Be Stored.
-  2. **Line 12** In `"Image Compressor.py"` File. Change It With The Directory's Path Where All The **.png** Image Type Files Are To Be Stored.
-  3. **Line 56** In `"Image Compressor.py"` File. You Can Change The Quality Of The Converted Image. **(Beware!! This Will Change The Size Of The File But This Will Result In A Degraded Image Quality With Just A Few Numbers.)**
-  4. The Print Statements Can Be Changed According To Your Needs.
+# How To Use
+- If You Are Running The Program For The First Time Then You Have To Install The Dependencies/Requirements For The Program. To Do That:
+  - Open A Command Prompt/Terminal In The Current Directory.
+  - Then Run The Command `pip install -r requirements.txt` In The Prompt/Terminal.
+- After Starting The Program It Will Ask You To Enter The `Source` Directory, From Where All The Images Will Be Found. Please Check [The Folder Path Syntax](#folder-path-syntax) Before You Enter Anything.
+- Next, It Will Ask You For The `Destination` Ditrectory, Where All The Compressed Images Will Be Saved. Please Check [The Folder Path Syntax](#folder-path-syntax) Before You Enter Anything.
+- Next It Will Ask You If You Want To Clear The Records, For Which Please Check [Record File Use](#record).
+- When It Started Compressing The Images, It Will Display Some Details - The Name Of The Image, Original Size, Compressed Size. For More Information On How It Will Compress It Please Check [Compress Details](#compress-details).
+- When It Completes The Compressing, It Will Print The Avg Compression Rate Of All The Images Compressed With Also The Destination Folder Where All The Compressed Images Will Be Found.
 
 # Folder Path Syntax:
-**If You Get A Syntax Error While Running The Code, Or A Error Message Is Printed By The Program, Then Please Read The Below Points.**
-- The Path You Provide For The Source Directory (**Line 165**) Should Be In The Format ***"C:/Users/....."*** With A Front Slash (***"/"***) And Not A Back Slash (***"\\"***). The End Of The Path Should Also Contain A Front Slash (**"/"**), Without Which Also You Would Get An Error.
-- The Same Goes For The Destination Directory (**Line 166**) and The Path Of The Record Text File (**Line 167**)
-- If You Have Changed The PNG Directory Then The Same Goes With It As Well.
+- The Path You Provide For The Source Directory Should Be In The Format ***"C:/Users/....."*** With A Front Slash (***"/"***) And Not A Back Slash (***"\\"***). The End Of The Path Should Also Contain A Front Slash (**"/"**), (Ex: **"C:/Users/"**) Without Which Also You Would Get An Error.
+- The Same Goes For The Destination Directory.
+- If You Have Changed The List Containing PNG Directories, Then The Same Goes With It As Well.
 
-# How To Use:
-- If You Are Running The Program For The First Time Then You Have To Install The Dependencies/Requirements For The Program. To Do That:
-  - Open A Command Prompt/Terminal In This Program's Directory.
-  - Then Run The Command `pip install -r requirements.txt` In The Prompt/Terminal.
+# What To/Can Change
+1. You Can Change The List Of *PNG Directories* In **Line 16**. It Should Follow [The Folder Path Syntax](#folder-path-syntax).
+2. The Record File's Name In **Line 15**.
+3. You *Can* Change The Compression Rate In **Lines 131 and 149** To Any Other **Integer**. **But This Can Have Serious Consequences Towards How The Program Compresses Your Images, It Is Advisable Not To Change.**
 
-- After Starting The Program, It Will Ask You To Enter The Source And Destination Folder's Path. Enter The Details Following The Rules Stated In [#Folder-Path-Syntax](#folder-path-syntax).
-- After Entering The Correct Information You Will Be Asked If You Want To Clear The Records. If You Want To Start From The First On A Directory Then Press `y` And Continue.
-- Then It Will Ask You If You Want To Continue With The Program. If You Just Wanted To Clear The Records And Leave Then Press `n` Or Else Press `y` and Continue.
-- After Pressing `y` On The Above Prompt The Program Will Start Running And Printing Some Information On The Screen:
-  - The Name Of The File Getting Converted.
-  - The Original Size Of The Image.
-  - The Size Of The Image After Compression.
-- After Completing With The Files, It Will Print The Compression Rate Of The Above Compressed Images.
-- Then Atlast It Will Print `Done` With The Path Of The *Destination* Folder.
+*Please Do Not Change Any Other Line Except The Above Mentioned Ones.*
+
+# Record
+- When The Program Is Compressing The Images, If Will Save The Name Of The Image's File Name, So That If By An Error/Problem, It Stops Compressing Images Then Also You Can Start Again From Where You Left It.
+- For The Above To Work You Should Not Clear The Record When Asked At The Start Of Program.
+
+- **It Is Advisable To Clear The Records If You Are Compressing A New Folder With Images.**
+
+# Compress Details
+- The Program *Creates* New Subolders In The *Destination* Folder According To The Subfolders Present In The *Source* Folder And Places The Compressed Images Accordingly In The Subfolders In The *Destination*

@@ -13,7 +13,7 @@ class Compressor:
         self.source = ""
         self.destination = ""
         self.record_path = "Record.txt"
-        self.png = {"index":None, "directories": ["C:/Users/DHRUV/Desktop/PNG/", "C:/Users/DHRUV/AppData/Local/PNG/"]}
+        self.png = {"index":None, "directories": [os.getcwd + "/PNG/", "C:/Users/DHRUV/Desktop/PNG/", "C:/Users/DHRUV/AppData/Local/PNG/"]}
 
         self.avg = {"original": [], "compressed": [], "percentage": []}
 
@@ -173,6 +173,8 @@ class Compressor:
 
         recorded_files = self.read_record()
 
+        print(self.line_break)
+
         print("{: <75}{: >20}{: >20}".format("Name", "Original Size", "Compressed Size")) # Prints The Heading Of The Columns.
         time.sleep(1)
         self.compress(recorded_files)
@@ -189,9 +191,13 @@ class Compressor:
         if self.png["index"] != None:
             self.png_folder_operator(status="delete")
 
+        print(self.line_break)
         print(f"\nThe Compression Rate Throughout Was {avg}%\n")
+        print(self.line_break)
 
+        print(self.line_break)
         print(f"Done. All Images In \"{self.destination}\"")
+        print(self.line_break)
 
 Compressor = Compressor()
 Compressor.main()
