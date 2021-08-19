@@ -13,7 +13,7 @@ class Compressor:
         self.source = ""
         self.destination = ""
         self.record_path = "Record.txt"
-        self.png = {"index":None, "directories": [os.getcwd + "/PNG/", "C:/Users/DHRUV/Desktop/PNG/", "C:/Users/DHRUV/AppData/Local/PNG/"]}
+        self.png = {"index":None, "directories": [os.getcwd() + "/PNG/", "C:/Users/DHRUV/Desktop/PNG/", "C:/Users/DHRUV/AppData/Local/PNG/"]}
 
         self.avg = {"original": [], "compressed": [], "percentage": []}
 
@@ -59,7 +59,7 @@ class Compressor:
                 pass
             if input("Record Cleared. Do You Want To Run The Program? [y/n] : ").lower() == "n": # Then Asks For Running The Program.
                 quit() # If Yes, Quits The Program.
-        print("\n")
+        print(self.line_break)
 
     def record(self, image):
         """
@@ -166,14 +166,13 @@ class Compressor:
     def main(self):
         self.source = input("Enter The Directory Path Where The Images Are Located: ") # This Is The Directory From Which The Images Will Be Compressed. Change This According To Your Needs.
         self.destination = input("Enter The Directory Path Where The Compressed Images Are To Be Saved: ") # This Is The Directory Where All The Compressed Images Be Saved. Change This According To Your Needs.
-        print("\n")
+        print(self.line_break)
+
         self.ideal_path()
 
         self.clear_record()
 
         recorded_files = self.read_record()
-
-        print(self.line_break)
 
         print("{: <75}{: >20}{: >20}".format("Name", "Original Size", "Compressed Size")) # Prints The Heading Of The Columns.
         time.sleep(1)
@@ -182,7 +181,7 @@ class Compressor:
         try:
             avg = self.average_compression(status="sumup")
         except:
-            pass
+            avg = None
         
         if avg == None:
             print("We Didn't Find Any Images To Compress In The Source Directory!")
@@ -193,9 +192,9 @@ class Compressor:
 
         print(self.line_break)
         print(f"\nThe Compression Rate Throughout Was {avg}%\n")
-        print(self.line_break)
 
         print(self.line_break)
+
         print(f"Done. All Images In \"{self.destination}\"")
         print(self.line_break)
 
