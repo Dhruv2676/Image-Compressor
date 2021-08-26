@@ -146,6 +146,7 @@ class Compressor:
                 if image.endswith(".jpg") or image.endswith(".JPG") or image.endswith(".jpeg"):
                     if image + "\n" not in recorded_files:
                         picture = Image.open(path + "/" + image, "r")
+                        #picture = picture.rotate(270, expand=True)
                         picture.save(current_dest + "/" + image, optimize=True, quality=30)
 
                         self.record(image) # Record The Image Through A Function Defined Later.
